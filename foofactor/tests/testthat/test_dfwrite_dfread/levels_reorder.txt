@@ -1,1 +1,1 @@
-list(fac = c("C", "A"))
+list(fac = c("C", "B", "A"))

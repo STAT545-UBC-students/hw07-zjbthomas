@@ -27,8 +27,3 @@ Two files are generated: one text file for data frame, one companion file for fa
 Write and read data frame to/from plain text delimited files
 while retaining factor levels.
 }
-\examples{
-dfwrite(gapminder, "gapminder.txt", "levels.txt")
-dfread("gapminder.txt", "levels.txt") # return gapminder data frame
-
-}

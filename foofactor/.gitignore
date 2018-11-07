@@ -1,6 +1,8 @@
 Meta
-doc
+doc/*
 .Rproj.user
 .Rhistory
 .RData
 inst/doc
+
+!doc/*.html

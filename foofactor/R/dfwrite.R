@@ -19,10 +19,6 @@
 #' An error is raised if the input is not a dataframe, or files not found.
 #' Two files are generated: one text file for data frame, one companion file for factor levels.
 #'
-#' @examples
-#' dfwrite(gapminder, "gapminder.txt", "levels.txt")
-#' dfread("gapminder.txt", "levels.txt") # return gapminder data frame
-#'
 #' @rdname df_read_write
 #'
 #' @export

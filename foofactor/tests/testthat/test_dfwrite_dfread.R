@@ -14,14 +14,6 @@ test_that("Manually create a data frame", {
   expect_equal(levels(test_df$fac), levels(df$fac))
 })
 
-# test case to check if we provide a library data frame
-test_that("Library data frame", {
-  dfwrite(gapminder::gapminder, "./test_dfwrite_dfread/test_gapminder.csv", "./test_dfwrite_dfread/levels_gapminder.txt")
-  test_df <- dfread("./test_dfwrite_dfread/test_gapminder.csv", "./test_dfwrite_dfread/levels_gapminder.txt")
-
-  expect_equal(test_df, gapminder::gapminder)
-})
-
 # test case to report an error
 test_that("Not a data frame", {
   f <- factor(c("s", "t", "a"))

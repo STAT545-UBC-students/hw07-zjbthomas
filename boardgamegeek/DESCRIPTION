@@ -1,0 +1,21 @@
+Package: boardgamegeek
+Type: Package
+Title: A collection of board game information from Board Game Geek
+Version: 1.0.0
+Authors@R: person("Junbin", "ZHANG", role = c("aut", "cre"), email = "zjbthomas@gmail.com")
+Description: A collection of board game information from Board Game Geek, collected at Jun., 2018.
+Depends:
+    R (>= 3.2.2),
+    magrittr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr,
+    stringr
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 6.1.0
+VignetteBuilder: knitr
