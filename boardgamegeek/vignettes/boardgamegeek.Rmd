@@ -1,10 +1,10 @@
 ---
-title: "BoardGameGeek"
+title: "Board Game Geek"
 author: "Junbin ZHANG"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Board Game Geek}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
