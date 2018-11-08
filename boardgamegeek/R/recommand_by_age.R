@@ -10,6 +10,6 @@ recommand_by_age <- function(min = NA) {
   # if min defined
   return(
     bgg_db %>%
-      dplyr::filter(age <= min)
+      dplyr::filter(age >= min)
   )
 }

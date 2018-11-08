@@ -103,7 +103,7 @@ This package provides the following three functions to search board games by num
 
 ```{r}
 # recommand by min and max players
-recommand_by_number_of_player(min = 2, max = 3) %>% 
+recommand_by_num_of_player(min = 2, max = 3) %>% 
   select(rank, game_id, names, min_players, max_players) %>% 
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Min. Players", "Max. Players"))
@@ -125,10 +125,13 @@ recommand_by_age(14) %>%
 
 There are some other fields not used in designing functions in these packages, but they are interesting to explore! For example, we can make web cralwer based on `bgg_url`, display images using `image_url`, rank board games based on how many people `owned` them!
 
-Here, I show one of my favourite game, "Through the Ages"!
+Here, I show one of my favourite games, "Through the Ages"!
 
 ```{r, message=FALSE}
-download.file(as.character(bgg_db$image_url[3]), "./images/182028.jpg", mode = "wb")
+# search Through the Ages
+through_the_ages <- search_by_name("Through the Ages: A New Story of Civilization")
+# download image
+download.file(as.character(through_the_ages$image_url), "./images/182028.jpg", mode = "wb")
 ```
 
 <img src="./images/182028.jpg" alt="Through the Ages" width="500"/>

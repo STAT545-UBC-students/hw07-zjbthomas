@@ -180,20 +180,20 @@ games by number of players, play time, or age range.
 
 ``` r
 # recommand by min and max players
-recommand_by_number_of_player(min = 2, max = 3) %>% 
+recommand_by_num_of_player(min = 2, max = 3) %>% 
   select(rank, game_id, names, min_players, max_players) %>% 
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Min. Players", "Max. Players"))
 ```
 
-|  Rank|  Game ID| Name                                          |  Min. Players|  Max. Players|
-|-----:|--------:|:----------------------------------------------|-------------:|-------------:|
-|     1|   174430| Gloomhaven                                    |             1|             4|
-|     2|   161936| Pandemic Legacy: Season 1                     |             2|             4|
-|     3|   182028| Through the Ages: A New Story of Civilization |             2|             4|
-|     4|   167791| Terraforming Mars                             |             1|             5|
-|     6|   187645| Star Wars: Rebellion                          |             2|             4|
-|     7|   169786| Scythe                                        |             1|             5|
+|  Rank|  Game ID| Name                              |  Min. Players|  Max. Players|
+|-----:|--------:|:----------------------------------|-------------:|-------------:|
+|     5|    12333| Twilight Struggle                 |             2|             2|
+|    13|   173346| 7 Wonders Duel                    |             2|             2|
+|    39|   124742| Android: Netrunner                |             2|             2|
+|    57|   163412| Patchwork                         |             2|             2|
+|    63|   103885| Star Wars: X-Wing Miniatures Game |             2|             2|
+|    87|   147020| Star Realms                       |             2|             2|
 
 ``` r
 
@@ -204,14 +204,14 @@ recommand_by_time(min = 10, max = 80) %>%
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Avg. Play Time", "Min. Play Time", "Max. Play Time"))
 ```
 
-|  Rank|  Game ID| Name                                                  |  Avg. Play Time|  Min. Play Time|  Max. Play Time|
-|-----:|--------:|:------------------------------------------------------|---------------:|---------------:|---------------:|
-|    10|   180263| The 7th Continent                                     |            1000|               5|            1000|
-|  1988|   184522| Dead Last                                             |              90|              10|              90|
-|  2007|    68820| Enemy Action: Ardennes                                |             600|               0|             600|
-|  2087|    85769| Panzer (second edition)                               |             300|               0|             300|
-|  2103|    52328| Malifaux                                              |             120|               0|             120|
-|  2251|    58601| Advanced Squad Leader: Starter Kit Expansion Pack \#1 |             150|               0|             150|
+|  Rank|  Game ID| Name                      |  Avg. Play Time|  Min. Play Time|  Max. Play Time|
+|-----:|--------:|:--------------------------|---------------:|---------------:|---------------:|
+|     2|   161936| Pandemic Legacy: Season 1 |              60|              60|              60|
+|    13|   173346| 7 Wonders Duel            |              30|              30|              30|
+|    33|   221107| Pandemic Legacy: Season 2 |              60|              60|              60|
+|    39|   124742| Android: Netrunner        |              45|              45|              45|
+|    41|   230802| Azul                      |              45|              30|              45|
+|    42|    68448| 7 Wonders                 |              30|              30|              30|
 
 ``` r
 
@@ -224,12 +224,12 @@ recommand_by_age(14) %>%
 
 |  Rank|  Game ID| Name                                          |  Min. Age|
 |-----:|--------:|:----------------------------------------------|---------:|
-|     1|   174430| Gloomhaven                                    |        12|
-|     2|   161936| Pandemic Legacy: Season 1                     |        13|
 |     3|   182028| Through the Ages: A New Story of Civilization |        14|
-|     4|   167791| Terraforming Mars                             |        12|
-|     5|    12333| Twilight Struggle                             |        13|
 |     6|   187645| Star Wars: Rebellion                          |        14|
+|     7|   169786| Scythe                                        |        14|
+|    10|   180263| The 7th Continent                             |        14|
+|    18|    96848| Mage Knight Board Game                        |        14|
+|    20|   205637| Arkham Horror: The Card Game                  |        14|
 
 ### Other funny ideas!
 
@@ -238,10 +238,13 @@ packages, but they are interesting to explore! For example, we can make
 web cralwer based on `bgg_url`, display images using `image_url`, rank
 board games based on how many people `owned` them!
 
-Here, I show one of my favourite game, “Through the Ages”!
+Here, I show one of my favourite games, “Through the Ages”!
 
 ``` r
-download.file(as.character(bgg_db$image_url[3]), "./images/182028.jpg", mode = "wb")
+# search Through the Ages
+through_the_ages <- search_by_name("Through the Ages: A New Story of Civilization")
+# download image
+download.file(as.character(through_the_ages$image_url), "./images/182028.jpg", mode = "wb")
 ```
 
 <img src="./images/182028.jpg" alt="Through the Ages" width="500"/>
