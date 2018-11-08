@@ -317,6 +317,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="search-functions" class="section level1">
 <h1>Search functions</h1>
 <p>This package provides the following six functions to search board games by their ID, part of name, released year, one of their mechanic, one of their category, or designer.</p>
+<div id="search_by_game_id" class="section level2">
+<h2><code>search_by_game_id()</code></h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># search by game ID</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">search_by_game_id</span>(<span class="dv">102794</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, year, designer) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -341,6 +343,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="search_by_name" class="section level2">
+<h2><code>search_by_name()</code></h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># search by name</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">search_by_name</span>(<span class="st">&quot;Mansions of Madness: Second Edition&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, year, designer) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -365,6 +370,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="search_by_name-1" class="section level2">
+<h2><code>search_by_name()</code></h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># search by year</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">search_by_year</span>(<span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, year, designer) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -425,6 +433,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="search_by_mechanic" class="section level2">
+<h2><code>search_by_mechanic()</code></h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># search by mechanic</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">search_by_mechanic</span>(<span class="st">&quot;Action&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="co"># concatenate mechanic</span></a>
@@ -483,6 +494,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="search_by_category" class="section level2">
+<h2><code>search_by_category()</code></h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># search by category</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">search_by_category</span>(<span class="st">&quot;Dice&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="co"># concatenate category</span></a>
@@ -541,6 +555,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="search_by_designer" class="section level2">
+<h2><code>search_by_designer()</code></h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># search by designer</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">search_by_designer</span>(<span class="st">&quot;Manuel Rozoy&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, year, designer) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -567,9 +584,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tbody>
 </table>
 </div>
+</div>
 <div id="recommandation-functions" class="section level1">
 <h1>Recommandation functions</h1>
 <p>This package provides the following three functions to search board games by number of players, play time, or age range.</p>
+<div id="recommand_by_num_of_player" class="section level2">
+<h2><code>recommand_by_num_of_player()</code></h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># recommand by min and max players</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">recommand_by_num_of_player</span>(<span class="dt">min =</span> <span class="dv">2</span>, <span class="dt">max =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, min_players, max_players) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -630,6 +650,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="recommand_by_time" class="section level2">
+<h2><code>recommand_by_time()</code></h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># recommand by min and max time</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">recommand_by_time</span>(<span class="dt">min =</span> <span class="dv">10</span>, <span class="dt">max =</span> <span class="dv">80</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, avg_time, min_time, max_time) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -697,6 +720,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
+<div id="recommand_by_age" class="section level2">
+<h2><code>recommand_by_age()</code></h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># recommand by min age</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">recommand_by_age</span>(<span class="dv">14</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(rank, game_id, names, age) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -750,6 +776,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="other-funny-ideas" class="section level1">
 <h1>Other funny ideas!</h1>

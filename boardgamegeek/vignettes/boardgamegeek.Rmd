@@ -25,23 +25,37 @@ glimpse(bgg_db)
 
 This package provides the following six functions to search board games by their ID, part of name, released year, one of their mechanic, one of their category, or designer.
 
+## `search_by_game_id()`
+
 ```{r, warning=FALSE}
 # search by game ID
 search_by_game_id(102794) %>% 
   select(rank, game_id, names, year, designer) %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Year", "Designer"))
+```
 
+## `search_by_name()`
+
+```{r, warning=FALSE}
 # search by name
 search_by_name("Mansions of Madness: Second Edition") %>% 
   select(rank, game_id, names, year, designer) %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Year", "Designer"))
+```
 
+## `search_by_name()`
+
+```{r, warning=FALSE}
 # search by year
 search_by_year(2017) %>% 
   select(rank, game_id, names, year, designer) %>% 
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Year", "Designer"))
+```
 
+## `search_by_mechanic()`
+
+```{r, warning=FALSE}
 # search by mechanic
 search_by_mechanic("Action") %>%
   # concatenate mechanic
@@ -52,7 +66,11 @@ search_by_mechanic("Action") %>%
   select(rank, game_id, names, mechanic) %>%
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Mechanic"))
+```
 
+## `search_by_category()`
+
+```{r, warning=FALSE}
 # search by category
 search_by_category("Dice") %>% 
   # concatenate category
@@ -63,8 +81,11 @@ search_by_category("Dice") %>%
   select(rank, game_id, names, category) %>%
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Category"))
+```
 
+## `search_by_designer()`
 
+```{r, warning=FALSE}
 # search by designer
 search_by_designer("Manuel Rozoy") %>% 
   select(rank, game_id, names, year, designer) %>% 
@@ -76,19 +97,29 @@ search_by_designer("Manuel Rozoy") %>%
 
 This package provides the following three functions to search board games by number of players, play time, or age range.
 
+## `recommand_by_num_of_player()`
+
 ```{r}
 # recommand by min and max players
 recommand_by_num_of_player(min = 2, max = 3) %>% 
   select(rank, game_id, names, min_players, max_players) %>% 
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Min. Players", "Max. Players"))
+```
 
+## `recommand_by_time()`
+
+```{r, warning=FALSE}
 # recommand by min and max time
 recommand_by_time(min = 10, max = 80) %>% 
   select(rank, game_id, names, avg_time, min_time, max_time) %>% 
   head() %>% 
   knitr::kable(col.names = c("Rank", "Game ID", "Name", "Avg. Play Time", "Min. Play Time", "Max. Play Time"))
+```
 
+## `recommand_by_age()`
+
+```{r, warning=FALSE}
 # recommand by min age
 recommand_by_age(14) %>% 
   select(rank, game_id, names, age) %>% 

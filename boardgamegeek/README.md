@@ -72,6 +72,8 @@ This package provides the following six functions to search board games
 by their ID, part of name, released year, one of their mechanic, one of
 their category, or designer.
 
+#### `search_by_game_id()`
+
 ``` r
 # search by game ID
 search_by_game_id(102794) %>% 
@@ -83,8 +85,9 @@ search_by_game_id(102794) %>%
 |-----:|--------:|:--------------------------|-----:|:--------------|
 |    15|   102794| Caverna: The Cave Farmers |  2013| Uwe Rosenberg |
 
-``` r
+#### `search_by_name()`
 
+``` r
 # search by name
 search_by_name("Mansions of Madness: Second Edition") %>% 
   select(rank, game_id, names, year, designer) %>% 
@@ -95,8 +98,9 @@ search_by_name("Mansions of Madness: Second Edition") %>%
 |-----:|--------:|:------------------------------------|-----:|:-------------|
 |    21|   205059| Mansions of Madness: Second Edition |  2016| Nikki Valens |
 
-``` r
+#### `search_by_name()`
 
+``` r
 # search by year
 search_by_year(2017) %>% 
   select(rank, game_id, names, year, designer) %>% 
@@ -113,8 +117,9 @@ search_by_year(2017) %>%
 |    33|   221107| Pandemic Legacy: Season 2         |  2017| Rob Daviau, Matt Leacock                              |
 |    41|   230802| Azul                              |  2017| Michael Kiesling                                      |
 
-``` r
+#### `search_by_mechanic()`
 
+``` r
 # search by mechanic
 search_by_mechanic("Action") %>%
   # concatenate mechanic
@@ -136,8 +141,9 @@ search_by_mechanic("Action") %>%
 |     7|   169786| Scythe                                        | Area Control / Area Influence, Grid Movement, Simultaneous Action Selection, Variable Player Powers                                                                                |
 |    20|   205637| Arkham Horror: The Card Game                  | Action Point Allowance System, Co-operative Play, Deck / Pool Building, Hand Management, Role Playing, Variable Player Powers                                                      |
 
-``` r
+#### `search_by_category()`
 
+``` r
 # search by category
 search_by_category("Dice") %>% 
   # concatenate category
@@ -159,9 +165,9 @@ search_by_category("Dice") %>%
 |    79|    34635| Stone Age                 | Dice, Prehistoric                                                |
 |   108|   172287| Champions of Midgard      | Adventure, Dice, Fantasy, Fighting, Medieval, Mythology          |
 
+#### `search_by_designer()`
+
 ``` r
-
-
 # search by designer
 search_by_designer("Manuel Rozoy") %>% 
   select(rank, game_id, names, year, designer) %>% 
@@ -177,6 +183,8 @@ search_by_designer("Manuel Rozoy") %>%
 
 This package provides the following three functions to search board
 games by number of players, play time, or age range.
+
+#### `recommand_by_num_of_player()`
 
 ``` r
 # recommand by min and max players
@@ -195,8 +203,9 @@ recommand_by_num_of_player(min = 2, max = 3) %>%
 |    63|   103885| Star Wars: X-Wing Miniatures Game |             2|             2|
 |    87|   147020| Star Realms                       |             2|             2|
 
-``` r
+#### `recommand_by_time()`
 
+``` r
 # recommand by min and max time
 recommand_by_time(min = 10, max = 80) %>% 
   select(rank, game_id, names, avg_time, min_time, max_time) %>% 
@@ -213,8 +222,9 @@ recommand_by_time(min = 10, max = 80) %>%
 |    41|   230802| Azul                      |              45|              30|              45|
 |    42|    68448| 7 Wonders                 |              30|              30|              30|
 
-``` r
+#### `recommand_by_age()`
 
+``` r
 # recommand by min age
 recommand_by_age(14) %>% 
   select(rank, game_id, names, age) %>% 
