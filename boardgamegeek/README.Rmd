@@ -4,8 +4,6 @@ output:
     variant: markdown_github
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -36,12 +34,17 @@ devtools::install_github("STAT545-UBC-students/hw07-zjbthomas/boardgamegeek")
   
 ## Quick demo
 
+### Load library
+
+```{r}
+library(boardgamegeek)
+```
+
 ### Data frame `bgg_db`
 
 This package contains a data frame called `bgg_db`, with around 5,000 top board games from Board Game Geek in Jun., 2018. `bgg_db` contains 20 columns, including numes of board games, number of players, play time, ratings, designers, etc.
 
 ```{r}
-suppressPackageStartupMessages(library(boardgamegeek))
 suppressPackageStartupMessages(library(tidyverse))
 glimpse(bgg_db)
 ```

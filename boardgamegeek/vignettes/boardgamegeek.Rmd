@@ -2,7 +2,9 @@
 title: "Board Game Geek"
 author: "Junbin ZHANG"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Board Game Geek}
   %\VignetteEngine{knitr::rmarkdown}
@@ -11,12 +13,17 @@ vignette: >
 
 Do you like playing board games? Do you want to know which board game will be your favourite? This package contains data from the world's biggest board game website "Board Game Geek", and provides functions for you to search your favourite board games.
 
+# Load `boardgamegeek`
+
+```{r}
+library(boardgamegeek)
+```
+
 # Data frame `bgg_db`
 
 This package contains a data frame called `bgg_db`, with around 5,000 top board games from Board Game Geek in Jun., 2018. `bgg_db` contains 20 columns, including numes of board games, number of players, play time, ratings, designers, etc.
 
 ```{r}
-suppressPackageStartupMessages(library(boardgamegeek))
 suppressPackageStartupMessages(library(tidyverse))
 glimpse(bgg_db)
 ```

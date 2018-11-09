@@ -2,7 +2,9 @@
 title: "stringsAsFactors = HELLNO"
 author: "Junbin ZHANG"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{stringsAsFactors = HELLNO}
   %\VignetteEngine{knitr::rmarkdown}
@@ -13,46 +15,37 @@ Factors are a very useful type of variable in R, but they can also drive you nut
 
 Can we soften some of their sharp edges?
 
-# `fbind()`
-
-Binding two factors via `fbind()`:
+# Load `foofactors`
 
 ```{r}
 library(foofactors)
-a <- factor(c("character", "hits", "your", "eyeballs"))
-b <- factor(c("but", "integer", "where it", "counts"))
 ```
 
-Simply catenating two factors leads to a result that most don't expect.
 
-```{r}
-c(a, b)
-```
+# Retrieve information from factor
 
-The `fbind()` function glues two factors together and returns factor.
+Factors contain a set of character values, and it uses a concept called "levels" for storing a pre-defined set values. When you are playing around factors, you may want to know what characters it contain as well as its levels. This package provides functions `fdetect()` for you to check if a factor can be considered as a character, and `freq_out()` to output frequency of each level as a table,
 
-```{r}
-fbind(a, b)
-```
+## `freq_out()`
 
 Often we want a table of frequencies for the levels of a factor. The base `table()` function returns an object of class `table`, which can be inconvenient for downstream work. Processing with `as.data.frame()` can be helpful but it's a bit clunky.
 
 ```{r}
+# complicted way to get frequencies of each levels
 set.seed(1234)
 x <- factor(sample(letters[1:5], size = 100, replace = TRUE))
 table(x)
 as.data.frame(table(x))
 ```
 
-# `freq_out()`
-
 The `freq_out()` function returns a frequency table as a well-named `tbl_df`:
 
 ```{r}
+# simply use freq_out() to get frequencies of each levels
 freq_out(x)
 ```
 
-# `fdetect()`
+## `fdetect()`
 
 The `fdetect()` function checks if a factor can be considered as a character or not, based onn the fact that a character should have a length equals to its unique values, while a factor should not.
 
@@ -68,44 +61,112 @@ fdetect(true_factor)
 fdetect(character_factor)
 ```
 
-# `freorder()`
+# Modify factor and its levels
 
-The `freorder()` function can reorder the levels of a factor in descending order.
+This package also provides functions for you to modify factors and, more importantly, control their levels. We provide `fbind()` for you to combine two factors, and `freorder()` and `fset()` to arrange levels.
 
-```{r}
-# create a factor as an example
-f <- factor(c("s", "t", "a"))
+## `fbind()`
 
-# the originally order of level should be "a" "s" "t"
-levels(f)
-
-# the reordered levels should be "t" "s" "a"
-levels(freorder(f))
-```
-
-# `fset()`
-
-The `fset()` function sets the levels of a factor by the order of apperance of its data.
+Let's try `fbind()` with two factors.
 
 ```{r}
-# create a factor as an example
-f <- factor(c("s", "t", "a"))
-
-# the originally order of level should be "a" "s" "t"
-levels(f)
-
-# the reset levels should be "s" "t" "a"
-levels(fset(f))
+# create two factors to combine
+a <- factor(c("character", "hits", "your", "eyeballs"))
+b <- factor(c("but", "integer", "where it", "counts"))
 ```
 
-# `dfwrite()`/`dfread()`
+Simply catenating two factors leads to a result that most don't expect.
 
-Functions `dfwrite()` and `dfread()` only work on data frame. `dfwrite()` saves data frame as plain text delimited files (CSV files) while retaining factor levels. Notive that:
+```{r}
+# wrong example to combine two factors
+c(a, b)
+```
 
-- `dfwrite()` will generate a companion file, so both of these two functions require two generated files to work.
-- Only columns of factor type in the resultant data frames can be reconstructed. For other columns, they may not be the same as the original ones because plain text delimited files drop many information.
+The `fbind()` function glues two factors together and returns factor.
 
-In the following examples, the generated files are under ["examples"](./examples)
+```{r}
+# correct example to combine two factors with fbind()
+fbind(a, b)
+```
+
+## `freorder()`
+
+The `freorder()` function can reorder the levels of a factor in descending order. Let's have an example on `gapminder` to show the effects of it.
+
+```{r fig.width = 7}
+# load gapminder and tidyverse
+suppressPackageStartupMessages(library(gapminder))
+suppressPackageStartupMessages(library(tidyverse))
+
+# original order
+gapminder %>%
+  # group by continent and country
+  group_by(continent, country) %>% 
+  # fill with continent
+  ggplot(aes(x = continent, fill = continent)) +
+  # make it a bar plot
+  geom_bar() + 
+  # change axis labels
+  xlab("Continents") +
+  ylab("Count") +
+  # add title
+  labs(title = "Number of countries in each continents") +
+  # change theme
+  theme_bw()
+```
+
+We can reverse the levels of continents using `freorder()`. As a funny example, let's reorder the color!
+
+```{r fig.width = 7}
+# reversed order
+gapminder %>%
+  # group by continent and country
+  group_by(continent, country) %>% 
+  # fill with reversed levels of continent
+  ggplot(aes(x = continent, fill = freorder(continent))) +
+  # make it a bar plot
+  geom_bar() + 
+  # change axis labels
+  xlab("Continents") +
+  ylab("Count") +
+  # add title
+  labs(title = "Number of countries in each continents") +
+  # change theme
+  theme_bw()
+```
+
+
+## `fset()`
+
+The `fset()` function sets the levels of a factor by the order of apperance of its data. Let's try its effects on colors in the above example!
+
+```{r fig.width = 7}
+# reversed order
+gapminder %>%
+  # group by continent and country
+  group_by(continent, country) %>% 
+  # fill with reversed levels of continent
+  ggplot(aes(x = continent, fill = fset(continent))) +
+  # make it a bar plot
+  geom_bar() + 
+  # change axis labels
+  xlab("Continents") +
+  ylab("Count") +
+  # add title
+  labs(title = "Number of countries in each continents") +
+  # change theme
+  theme_bw()
+```
+
+
+
+# File I/O for data frame
+
+This package provides read/write functions for you to handle your data frames. In addition, since this is a package for factors, these functions can help you retain factor levels in your data frame!
+
+## `dfwrite()`/`dfread()`
+
+These two functions save data frame as plain text delimited files (CSV files) while retaining factor levels.
 
 ```{r, message=FALSE}
 # create a data frame as example
@@ -125,16 +186,7 @@ levels(df$fac)
 # write and read
 dfwrite(df, "./examples/df.csv", "./examples/df_levels.txt")
 read_df <- dfread("./examples/df.csv", "./examples/df_levels.txt")
-# confirm levels are maintained
-levels(read_df$fac)
-```
 
-If no path is specified to store levels, a "levels.txt" file will be generated automatically under the same folder as the CSV file for data frame.
-
-```{r, message=FALSE}
-# write and read
-dfwrite(df, "./examples/df.csv")
-read_df <- dfread("./examples/df.csv", "./examples/levels.txt")
 # confirm levels are maintained
 levels(read_df$fac)
 ```

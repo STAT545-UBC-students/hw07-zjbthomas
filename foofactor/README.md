@@ -35,12 +35,18 @@ devtools::install_github("STAT545-UBC-students/hw07-zjbthomas/foofactor")
 Quick demo
 ----------
 
+### Load library
+
+``` r
+library(foofactors)
+```
+
 ### `fbind()`
 
 Binding two factors via `fbind()`:
 
 ``` r
-library(foofactors)
+# create two factors to combine
 a <- factor(c("character", "hits", "your", "eyeballs"))
 b <- factor(c("but", "integer", "where it", "counts"))
 ```
@@ -48,6 +54,7 @@ b <- factor(c("but", "integer", "where it", "counts"))
 Simply catenating two factors leads to a result that most don’t expect.
 
 ``` r
+# wrong example to combine two factors
 c(a, b)
 #> [1] 1 3 4 2 1 3 4 2
 ```
@@ -55,6 +62,7 @@ c(a, b)
 The `fbind()` function glues two factors together and returns factor.
 
 ``` r
+# correct example to combine two factors with fbind()
 fbind(a, b)
 #> [1] character hits      your      eyeballs  but       integer   where it 
 #> [8] counts   
@@ -67,6 +75,7 @@ inconvenient for downstream work. Processing with `as.data.frame()` can
 be helpful but it’s a bit clunky.
 
 ``` r
+# complicted way to get frequencies of each levels
 set.seed(1234)
 x <- factor(sample(letters[1:5], size = 100, replace = TRUE))
 table(x)
@@ -88,6 +97,7 @@ The `freq_out()` function returns a frequency table as a well-named
 `tbl_df`:
 
 ``` r
+# simply use freq_out() to get frequencies of each levels
 freq_out(x)
 #> # A tibble: 5 x 2
 #>   x         n
@@ -159,7 +169,7 @@ levels(fset(f))
 
 Functions `dfwrite()` and `dfread()` only work on data frame.
 `dfwrite()` saves data frame as plain text delimited files (CSV files)
-while retaining factor levels. Notive that:
+while retaining factor levels. Notice that:
 
 -   `dfwrite()` will generate a companion file, so both of these two
     functions require two generated files to work.

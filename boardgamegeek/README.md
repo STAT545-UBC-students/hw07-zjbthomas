@@ -1,4 +1,3 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 Notes
 =====
 
@@ -31,6 +30,13 @@ devtools::install_github("STAT545-UBC-students/hw07-zjbthomas/boardgamegeek")
 Quick demo
 ----------
 
+### Load library
+
+``` r
+library(boardgamegeek)
+#> Loading required package: magrittr
+```
+
 ### Data frame `bgg_db`
 
 This package contains a data frame called `bgg_db`, with around 5,000
@@ -39,7 +45,6 @@ columns, including numes of board games, number of players, play time,
 ratings, designers, etc.
 
 ``` r
-suppressPackageStartupMessages(library(boardgamegeek))
 suppressPackageStartupMessages(library(tidyverse))
 glimpse(bgg_db)
 #> Observations: 4,999
